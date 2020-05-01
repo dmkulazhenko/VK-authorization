@@ -2,9 +2,43 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Index</title>
+    <title>Profile</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="shortcut icon" type="image/x-icon" href="/static/other/favicon.png">
+    <link rel="stylesheet" href="/static/css/index.css">
 </head>
 <body>
+<div class="container-fluid h-100">
+    <div class="row justify-content-center h-100 w-100 rows">
+        <div class="col-md-2 div_information">
+            <div class="names">
+                {{ first_name }} {{ last_name }}
+            </div>
+        </div>
 
+        <div class="col-md-5 div_friends">
+            <table class="transactions_table">
+                <thead>
+                <tr>
+                    <th><span>User</span></th>
+                    <th><span>City</span></th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for friend in friends %}
+                    <tr>
+                        <td>
+                            <div class="user_information">
+                                {{ friend.first_name }} {{ friend.last_name }}
+                            </div>
+                        </td>
+                        <td>{{ friend.city }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 </body>
 </html>

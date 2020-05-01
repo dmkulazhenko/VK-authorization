@@ -1,0 +1,41 @@
+html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.rows {
+    text-align: center;
+    display: -webkit-flex;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.div_information, .div_friends {
+    background-color: #4CAF50;
+    border-radius: 1em;
+    height: 1.7em;
+    font-size: 1.5em;
+    color: white;
+
+}
+
+.div_friends {
+    display: -webkit-flex;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 20px;
+    background-color: #ffc80a;
+    border-radius: 1em;
+    height: 12em;
+    color: black;
+}
+
+.div_friends table {
+    width: 100%;
+    border: 1px solid black;
+}
+
