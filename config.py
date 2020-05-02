@@ -4,6 +4,7 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 
 
 class Config:
+    # TODO: Remove secret keys and tokens from public config
     URL = 'http://task.leemur.ru/'
     SECRET_KEY = 'pv2m5uv239059329c023mc49234c2390m4293vn4234u23940n234238'
     SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'app.db')

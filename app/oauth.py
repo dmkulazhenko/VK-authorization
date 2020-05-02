@@ -4,6 +4,11 @@ from flask import current_app
 
 
 class Provider:
+    # TODO: U can get NoneType error, bcs ur method create_providers
+    #  uses unsave index access to Provider.providers,
+    #  but init of dict is in get_provider.
+    #  So, that creates smth like inconsistently call order.
+    #  U should init providers not that way or make create_providers private.
     providers = None
 
     def __init__(self, provider_name):
@@ -15,6 +20,7 @@ class Provider:
     def callback(self, code):
         pass
 
+    # TODO: private?
     def get_callback_url(self):
         return current_app.config['URL'] + 'api/callback/' + self.provider_name
 
@@ -39,6 +45,7 @@ class Provider:
 class VKProvider(Provider):
     def __init__(self):
         super(VKProvider, self).__init__('vk')
+        # TODO: PEP8 E501
         self._service = OAuth2Service(
             name='vk',
             client_id=current_app.config['OAUTHS']['vk']['client_id'],
@@ -55,6 +62,10 @@ class VKProvider(Provider):
         )
 
     def callback(self, code):
+        # TODO: Im not sure, that its good idea to return tuple with info,
+        #   maybe u should create base class and return class instance.
+        #   Bcs, if we will talk about scalability on other providers,
+        #   returning the tuple maybe less readable / elegant.
         def new_decoder(payload):
             return json.loads(payload.decode('utf-8'))
 
@@ -68,6 +79,7 @@ class VKProvider(Provider):
             decoder=new_decoder
         )
 
+        # TODO: move requests URL / v to config / class static constants / ...
         user_information = oauth_session.get(
             current_app.config['OAUTHS']['vk']['request_url'] + 'users.get',
             params={'access_token': oauth_session.access_token, 'v': '5.103'}
